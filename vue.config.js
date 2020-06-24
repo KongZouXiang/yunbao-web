@@ -13,7 +13,7 @@ const name = defaultSettings.title || 'vue Element Admin' // page title
 // For example, Mac: sudo npm run
 // You can change the port by the following method:
 // port = 9527 npm run dev OR npm run dev --port = 9527
-const port = process.env.port || process.env.npm_config_port || 9527 // dev port
+const port = process.env.port || process.env.npm_config_port || 9528 // 9527 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -78,6 +78,17 @@ module.exports = {
       .loader('svg-sprite-loader')
       .options({
         symbolId: 'icon-[name]'
+      })
+      .end()
+
+    // set preserveWhitespace
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .loader('vue-loader')
+      .tap(options => {
+        options.compilerOptions.preserveWhitespace = true
+        return options
       })
       .end()
 
